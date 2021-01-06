@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wf.entry.User;
 import com.wf.mapper.UserMapper;
 import com.wf.service.UserService;
+import com.wf.utils.BaseException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,6 +16,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public List<User> selectUser() {
+        User user = null;
+        if (null == user) {
+            throw new BaseException("数据错误！！！");
+        }
         return this.list();
     }
 
@@ -24,7 +29,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.eq("name", user.getName());
         User users = this.getOne(queryWrapper);
         if (null == users) {
-            return null;
+            throw new BaseException("该用户不存在！");
         }
         return users;
     }
