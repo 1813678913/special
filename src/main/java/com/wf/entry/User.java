@@ -13,6 +13,9 @@ public class User {
 
     private String pwd;
 
+    //权限
+    private String lv;
+
     private Date createTime;
 
 }

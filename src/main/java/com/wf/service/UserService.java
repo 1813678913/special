@@ -8,4 +8,7 @@ import java.util.List;
 public interface UserService extends IService<User> {
     List<User> selectUser();
 
+    User login(User user);
+
+    int register(User user);
 }
