@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public ResultJson<Integer> Register(@RequestBody User user) {
+    public ResultJson<Integer> Register(User user) {
         userService.register(user);
         return new ResultJson<>(1);
     }

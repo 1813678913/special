@@ -36,6 +36,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public int register(User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", user.getName());
+        User users = this.getOne(queryWrapper);
+        if (null != users) {
+            throw new BaseException("用户名已存在！");
+        }
         user.setCreateTime(new Date());
         this.save(user);
         return 1;
