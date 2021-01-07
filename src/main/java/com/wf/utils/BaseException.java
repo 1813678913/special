@@ -6,6 +6,8 @@ public class BaseException extends RuntimeException {
 
     private String formatMsg;
 
+    private int errorCode;
+
     private Object[] params;
 
     public BaseException(String message) {
@@ -17,6 +19,11 @@ public class BaseException extends RuntimeException {
         super(message);
         this.formatMsg=message;
         this.params=params;
+    }
+
+    public BaseException(int errorCode, String errorMsg) {
+        super(errorMsg);
+        this.errorCode = errorCode;
     }
 
     //基础业务异常拦截

@@ -3,11 +3,9 @@ package com.wf.controller;
 import com.wf.entry.User;
 import com.wf.service.UserService;
 import com.wf.utils.BaseException;
+import com.wf.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +19,13 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/test")
-    public List<User> test() {
+    public ResultJson<List<User>> test() {
         User user = null;
         if (null == user) {
             throw new BaseException("数据错误！！！");
         }
         List<User> users = userService.selectUser();
-        return users;
+        return new ResultJson<>(users);
     }
 
     /**
@@ -37,19 +35,18 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public User login(User user) {
-        userService.login(user);
-        return userService.login(user);
+    public ResultJson<User> login(@RequestBody User user) {
+        return new ResultJson<>(userService.login(user));
     }
 
     @GetMapping("/register")
-    public int Register(User user) {
+    public ResultJson<Integer> Register(@RequestBody User user) {
         userService.register(user);
-        return 1;
+        return new ResultJson<>(1);
     }
 
-    @RequestMapping
-    public String home() {
+    @RequestMapping("/home")
+    public ResultJson<List<String>> home() {
         list.add("盛年不重来，一日难再晨。及时宜自勉，岁月不待人。——陶渊明");
         list.add("君子之交淡若水，小人之交甘若醴，君子淡以亲，小人甘以绝。——庄子");
         list.add("三更灯火五更鸡，正是男儿读书时，黑发不知勤学早，白首方悔读书迟。——颜真卿");
@@ -70,8 +67,7 @@ public class UserController {
         list.add("天下事以难而废者十之一，以惰而废者十之九。——颜之推");
         list.add("时间就是生命，无端地空耗别人的时间，无异于谋财害命。——鲁迅");
         list.add("尺有所短；寸有所长。物有所不足；智有所不明。——屈原《卜居》");
-
-        return "list";
+        return new ResultJson<>(list);
     }
 
 }
