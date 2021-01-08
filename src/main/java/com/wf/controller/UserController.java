@@ -1,12 +1,16 @@
 package com.wf.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.wf.dto.BasCommodityImportDto;
 import com.wf.entry.User;
 import com.wf.service.UserService;
 import com.wf.utils.BaseException;
 import com.wf.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +72,15 @@ public class UserController {
         list.add("时间就是生命，无端地空耗别人的时间，无异于谋财害命。——鲁迅");
         list.add("尺有所短；寸有所长。物有所不足；智有所不明。——屈原《卜居》");
         return new ResultJson<>(list);
+    }
+
+
+    //EasyExcel读
+    @PostMapping(value = "/upload", headers = "content-type=multipart/form-data")
+    public String upload(MultipartFile file) throws IOException {
+        List<Object> list = EasyExcel.read(file.getInputStream(), BasCommodityImportDto.class, null).sheet(0).doReadSync();
+        System.out.println("==========");
+        return "success";
     }
 
 }

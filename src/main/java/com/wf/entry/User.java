@@ -12,7 +12,6 @@ public class User {
     private String name;
 
     private String pwd;
-
     //权限
     private String lv;
 
