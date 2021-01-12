@@ -18,6 +18,8 @@ import java.util.Random;
 @RestController
 public class UserController {
 
+    private static int a = 0;
+
     private static final List<String> list = new ArrayList<>();
 
     @Autowired
@@ -50,31 +52,46 @@ public class UserController {
         return new ResultJson<>(1);
     }
 
-    @GetMapping("/home")
+    @GetMapping()
     public ResultJson<String> home() {
-        list.add("盛年不重来，一日难再晨。及时宜自勉，岁月不待人。——陶渊明");
-        list.add("君子之交淡若水，小人之交甘若醴，君子淡以亲，小人甘以绝。——庄子");
-        list.add("三更灯火五更鸡，正是男儿读书时，黑发不知勤学早，白首方悔读书迟。——颜真卿");
-        list.add("有志者，事竟成，破釜沉舟，百二秦关终属楚；苦心人，天不负，卧薪尝胆，三千越甲可吞吴。——蒲松龄");
-        list.add("天将降大任于斯人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，曾益其所不能。——孟子");
-        list.add("富贵不能淫，贫贱不能移，威武不能屈，此之谓大丈夫。——孟子");
-        list.add("人的生命是有限的，可是为人民服务是无限的，我要把有限的生命投入到无限的为人民服务之中去！——雷锋");
-        list.add("读书如饭，善吃饭者长精神，不善吃者生疾病。——章学诚");
-        list.add("天下兴亡，匹夫有责。——顾炎武");
-        list.add("人不可有傲气，但不可无傲骨。——徐悲鸿");
-        list.add("静以修身，俭以养德，非淡泊无以明志，非宁静无以致远。——诸葛亮");
-        list.add("天时不如地利，地利不如人和。——《孟子·公孙丑》");
+        list.add("有些路很远，走下去会很累。可是，不走，会后悔");
+        list.add("世界这么大，能遇见，不容易,且行且珍惜");
+        list.add("当我已经给你天天分享日常的时候你就应该知道我已经沦陷了" + " -- " +
+                "You should know I'm falling when I'm already sharing my daily routine with you");
+        list.add("当你半天没有回我消息而我心里有点失落的时候，我就知道我动情了\n" +
+                "\n" +
+                " -- When you don't reply to my message for a long time and I feel a little lost, I know I am in love");
+        list.add("唯有热爱，能抵漫长岁月");
+        list.add("但行好事,莫问前程");
+        list.add("生活有些沉闷，还好跑起来有风");
+        list.add("一群有情有义的人，在一起做一些有意义的事情");
+        list.add("我们的征途，是那星辰大海");
+        list.add("人不可有傲气，但不可无傲骨");
+        list.add("一天中黎明前是最黑暗的，但也是最接近光明的时候，暴风雨前是最宁静的，但彩虹总是在风雨后。");
+        list.add("世上最重要的事，不在于我们在何处，而在于我们朝着什么方向走");
         list.add("追求源于热爱");
-        list.add("少而好学，如日出之阳；壮而好学，如日中之光；志而好学，如炳烛之光。——刘向");
-        list.add("古之立大志者，不惟有超世之才，亦必有坚韧不拔之志。——苏轼");
-        list.add("盛年不重来，一日难再晨。及时当勉励，岁月不待人。——陶渊明");
-        list.add("三军可夺帅也，匹夫不可夺志也。——孔子");
-        list.add("天下事以难而废者十之一，以惰而废者十之九。——颜之推");
-        list.add("时间就是生命，无端地空耗别人的时间，无异于谋财害命。——鲁迅");
+        list.add("这山河烂漫秋风暖阳人间朝暮你愿不愿意和我一起看看");
+        list.add("不忘初心，方得始终");
+        list.add("没关系，天空越黑，星星越亮");
+        list.add("没有一颗心会因为追求梦想而受伤，当你真心渴望某样东西时，整个宇宙都会来帮忙");
+        list.add("自能生羽翼，何必仰云梯");
+        list.add("不要因为别人一句话，而夺走你今天的快乐");
         list.add("永远相信美好的事情即将发生");
         list.add("须知少年凌云志，曾许人间第一流");
-        int i = new Random().nextInt(22);
-        return new ResultJson<>(list.get(i));
+        list.add("少年最好的地方就是：虽然嘴上说着放弃，心底却总会憋着一口气");
+        list.add("每个人都在做着各自的斗争呢，所以无论如何都不要服输");
+        list.add("我不是谁的SuperMan，我为我自己代言！");
+        int i = new Random().nextInt(list.size());
+        if (i != a) {
+            a = i;
+            return new ResultJson<>(list.get(i));
+        } else if (i == 0 && i != list.size()) {
+            a++;
+            return new ResultJson<>(list.get(a));
+        } else {
+            a--;
+            return new ResultJson<>(list.get(a));
+        }
     }
 
 
