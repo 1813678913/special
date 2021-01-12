@@ -52,15 +52,13 @@ public class UserController {
         return new ResultJson<>(1);
     }
 
-    @GetMapping()
+    @GetMapping("/home")
     public ResultJson<String> home() {
         list.add("有些路很远，走下去会很累。可是，不走，会后悔");
         list.add("世界这么大，能遇见，不容易,且行且珍惜");
         list.add("当我已经给你天天分享日常的时候你就应该知道我已经沦陷了" + " -- " +
                 "You should know I'm falling when I'm already sharing my daily routine with you");
-        list.add("当你半天没有回我消息而我心里有点失落的时候，我就知道我动情了\n" +
-                "\n" +
-                " -- When you don't reply to my message for a long time and I feel a little lost, I know I am in love");
+        list.add("热爱的事情，一定不能半途而废");
         list.add("唯有热爱，能抵漫长岁月");
         list.add("但行好事,莫问前程");
         list.add("生活有些沉闷，还好跑起来有风");
