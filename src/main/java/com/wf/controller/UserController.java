@@ -4,7 +4,6 @@ import com.alibaba.excel.EasyExcel;
 import com.wf.dto.BasCommodityImportDto;
 import com.wf.entry.User;
 import com.wf.service.UserService;
-import com.wf.utils.BaseException;
 import com.wf.utils.ResultJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,42 +17,12 @@ import java.util.Random;
 @RestController
 public class UserController {
 
-    private static int a = 0;
-
     private static final List<String> list = new ArrayList<>();
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/test")
-    public ResultJson<List<User>> test() {
-        User user = null;
-        if (null == user) {
-            throw new BaseException("数据错误！！！");
-        }
-        List<User> users = userService.selectUser();
-        return new ResultJson<>(users);
-    }
-
-    /**
-     * 必传 name pwd
-     *
-     * @param user
-     * @return
-     */
-    @PostMapping("/login")
-    public ResultJson<User> login(@RequestBody User user) {
-        return new ResultJson<>(userService.login(user));
-    }
-
-    @GetMapping("/register")
-    public ResultJson<Integer> Register(User user) {
-        userService.register(user);
-        return new ResultJson<>(1);
-    }
-
-    @GetMapping("/home")
-    public ResultJson<String> home() {
+    static {
         list.add("有些路很远，走下去会很累。可是，不走，会后悔");
         list.add("世界这么大，能遇见，不容易,且行且珍惜");
         list.add("当我已经给你天天分享日常的时候你就应该知道我已经沦陷了" + " -- " +
@@ -78,20 +47,38 @@ public class UserController {
         list.add("须知少年凌云志，曾许人间第一流");
         list.add("少年最好的地方就是：虽然嘴上说着放弃，心底却总会憋着一口气");
         list.add("每个人都在做着各自的斗争呢，所以无论如何都不要服输");
-        list.add("我不是谁的SuperMan，我为我自己代言！");
-        int i = new Random().nextInt(list.size());
-        if (i != a) {
-            a = i;
-            return new ResultJson<>(list.get(i));
-        } else if (i == 0 && i != list.size()) {
-            a++;
-            return new ResultJson<>(list.get(a));
-        } else {
-            a--;
-            return new ResultJson<>(list.get(a));
-        }
+        list.add("时间不在于你拥有多少，而在于你怎样去使用");
+        list.add("我不是Superhero,我为自己代言");
     }
 
+    @RequestMapping("/test")
+    public ResultJson<List<User>> test() {
+        List<User> users = userService.selectUser();
+        return new ResultJson<>(users);
+    }
+
+    /**
+     * 必传 name pwd
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("/login")
+    public ResultJson<User> login(@RequestBody User user) {
+        return new ResultJson<>(userService.login(user));
+    }
+
+    @GetMapping("/register")
+    public ResultJson<Integer> Register(User user) {
+        userService.register(user);
+        return new ResultJson<>(1);
+    }
+
+    @GetMapping("/home")
+    public ResultJson<String> home() {
+        int i = new Random().nextInt(list.size());
+        return new ResultJson<>(list.get(i));
+    }
 
     //EasyExcel读
     @PostMapping(value = "/upload", headers = "content-type=multipart/form-data")
