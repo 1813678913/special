@@ -2,42 +2,37 @@ package com.wf.controller;
 
 
 import com.wf.utils.ResultJson;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.FileOutputStream;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
 
 @RestController
 public class TestController {
 
-    private static int count=0;
+    private static int count = 0;
 
-    @RequestMapping("/download")
-    public ResultJson<String> allUser(String urls, String paths) {
-        if (null == urls || null == paths) {
-            return new ResultJson<>("下载路径或者下载链接不能为空");
+    @GetMapping("/download")
+    public ResultJson<String> allUser(String urls, HttpServletResponse response) throws Exception {
+        String fileName = "download" + count + ".pdf";
+        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        URL url = new URL(urls);
+        InputStream inputStream = url.openConnection().getInputStream();
+        byte[] buffer = new byte[1024];
+        int len;
+        ServletOutputStream outputStream = response.getOutputStream();
+        while ((len = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, len);
         }
-        paths = paths + "\\download"+count+".pdf";
-        try {
-            URL url = new URL(urls);
-            URLConnection urlConnection = url.openConnection();
-            InputStream inputStream = urlConnection.getInputStream();
-            byte[] buff = new byte[10240];
-            int temp;
-            FileOutputStream outputStream = new FileOutputStream(paths);
-            while ((temp = inputStream.read(buff)) != -1) {
-                outputStream.write(buff, 0, temp);
-            }
-            count++;
-            outputStream.close();
-            inputStream.close();
-        } catch (Exception e) {
-            return new ResultJson<>("程序出错，可能方法失效，或者操作有误！错误信息" + e.getMessage());
-        }
+        count++;
+        outputStream.close();
+        inputStream.close();
         return new ResultJson<>("下载成功");
     }
+
 
 }
