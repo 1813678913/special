@@ -16,10 +16,13 @@ public class TestController {
     private static int count = 0;
 
     @GetMapping("/download")
-    public ResultJson<String> allUser(String url, HttpServletResponse response) throws Exception {
+    public void allUser(String url, String name, HttpServletResponse response) throws Exception {
         String index = url.substring(url.lastIndexOf("."));
         String fileName = "download" + count + index;
-        response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+        if (null != name) {
+            fileName = name+index;
+        }
+        response.setHeader("Content-Disposition", "attachment;filename="+java.net.URLEncoder.encode(fileName, "utf-8"));
         URL urls = new URL(url);
         InputStream inputStream = urls.openConnection().getInputStream();
         byte[] buffer = new byte[1024];
@@ -31,6 +34,5 @@ public class TestController {
         count++;
         outputStream.close();
         inputStream.close();
-        return new ResultJson<>("下载成功");
     }
 }
