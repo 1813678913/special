@@ -17,7 +17,7 @@ public class TestController {
 
     @GetMapping("/download")
     public ResultJson<String> allUser(String url, HttpServletResponse response) throws Exception {
-        String index = url.substring(url.indexOf("."));
+        String index = url.substring(url.lastIndexOf("."));
         String fileName = "download" + count + index;
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
         URL urls = new URL(url);
@@ -33,5 +33,4 @@ public class TestController {
         inputStream.close();
         return new ResultJson<>("下载成功");
     }
-
 }
