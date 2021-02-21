@@ -49,6 +49,7 @@ public class UserController {
         list.add("每个人都在做着各自的斗争呢，所以无论如何都不要服输");
         list.add("时间不在于你拥有多少，而在于你怎样去使用");
         list.add("我不是Superhero,我为自己代言");
+        list.add("明天你好！");
     }
 
     @RequestMapping("/test")

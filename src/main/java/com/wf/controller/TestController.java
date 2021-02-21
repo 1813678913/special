@@ -3,7 +3,6 @@ package com.wf.controller;
 
 import com.wf.utils.ResultJson;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletOutputStream;
@@ -17,11 +16,11 @@ public class TestController {
     private static int count = 0;
 
     @GetMapping("/download")
-    public ResultJson<String> allUser(String urls, HttpServletResponse response) throws Exception {
+    public ResultJson<String> allUser(String url, HttpServletResponse response) throws Exception {
         String fileName = "download" + count + ".pdf";
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
-        URL url = new URL(urls);
-        InputStream inputStream = url.openConnection().getInputStream();
+        URL urls = new URL(url);
+        InputStream inputStream = urls.openConnection().getInputStream();
         byte[] buffer = new byte[1024];
         int len;
         ServletOutputStream outputStream = response.getOutputStream();
