@@ -15,7 +15,7 @@ public class DownLoadTest {
         InputStream inputStream = urlConnection.getInputStream();
         byte[] buff = new byte[1000024];
         int temp;
-        FileOutputStream outputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test1.pdf");
+        FileOutputStream outputStream = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\test1.doc");
         while ((temp = inputStream.read(buff)) != -1) {
             outputStream.write(buff, 0, temp);
         }
