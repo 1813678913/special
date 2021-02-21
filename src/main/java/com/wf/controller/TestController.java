@@ -18,6 +18,9 @@ public class TestController {
     @GetMapping("/download")
     public void allUser(String url, String name, HttpServletResponse response) throws Exception {
         String index = url.substring(url.lastIndexOf("."));
+        if(null==index){
+            index=".mp4";
+        }
         String fileName = "download" + count + index;
         if (null != name) {
             fileName = name+index;
