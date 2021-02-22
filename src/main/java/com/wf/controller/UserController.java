@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -50,6 +51,13 @@ public class UserController {
         list.add("时间不在于你拥有多少，而在于你怎样去使用");
         list.add("我不是Superhero,我为自己代言");
         list.add("明天你好！");
+    }
+
+    @RequestMapping("/all")
+    public List<User> get() throws ParseException {
+        String[] time = {"2021-01-07", "2021-01-15"};
+        List<User> all = userService.getAll(time);
+        return all;
     }
 
     @RequestMapping("/test")

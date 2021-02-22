@@ -22,3 +22,6 @@ mybatis-plus:
     db-config:
       db-type: mysql
       id-type: uuid
+logging:
+  level:
+    com.wf.mapper : debug

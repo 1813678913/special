@@ -1,5 +1,6 @@
 package com.wf.entry;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -15,6 +16,9 @@ public class User {
     //权限
     private String lv;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
+
+    private String createTimes;
 
 }

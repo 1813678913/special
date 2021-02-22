@@ -1,7 +1,6 @@
 package com.wf.controller;
 
 
-import com.wf.utils.ResultJson;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,14 +17,14 @@ public class TestController {
     @GetMapping("/download")
     public void allUser(String url, String name, HttpServletResponse response) throws Exception {
         String index = url.substring(url.lastIndexOf("."));
-        if(null==index){
-            index=".mp4";
+        if (null == index) {
+            index = ".mp4";
         }
         String fileName = "download" + count + index;
         if (null != name) {
-            fileName = name+index;
+            fileName = name + index;
         }
-        response.setHeader("Content-Disposition", "attachment;filename="+java.net.URLEncoder.encode(fileName, "utf-8"));
+        response.setHeader("Content-Disposition", "attachment;filename=" + java.net.URLEncoder.encode(fileName, "utf-8"));
         URL urls = new URL(url);
         InputStream inputStream = urls.openConnection().getInputStream();
         byte[] buffer = new byte[1024];
