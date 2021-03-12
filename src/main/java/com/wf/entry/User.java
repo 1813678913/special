@@ -1,5 +1,6 @@
 package com.wf.entry;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class User {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
+    @TableField(exist = false)
     private String createTimes;
 
 }
