@@ -67,6 +67,7 @@ public class UserController {
         return new ResultJson<>(users);
     }
 
+
     /**
      * 必传 name pwd
      *
@@ -96,6 +97,11 @@ public class UserController {
         List<Object> list = EasyExcel.read(file.getInputStream(), BasCommodityImportDto.class, null).sheet(0).doReadSync();
         System.out.println("==========");
         return "success";
+    }
+
+    @GetMapping("/add")
+    public void insert(String name){
+        userService.add(name);
     }
 
 }

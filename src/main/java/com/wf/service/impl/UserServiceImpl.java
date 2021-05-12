@@ -76,4 +76,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return map;
     }
 
+    @Override
+    public void add(String name) {
+        User user = new User();
+        user.setName(name);
+        this.save(user);
+    }
 }

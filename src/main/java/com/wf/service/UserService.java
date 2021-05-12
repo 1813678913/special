@@ -14,4 +14,6 @@ public interface UserService extends IService<User> {
     int register(User user);
 
     List<User> getAll(String[] time) throws ParseException;
+
+    void add(String name);
 }
