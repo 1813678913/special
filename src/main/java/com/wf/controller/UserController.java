@@ -27,8 +27,6 @@ public class UserController {
     static {
         list.add("有些路很远，走下去会很累。可是，不走，会后悔");
         list.add("世界这么大，能遇见，不容易,且行且珍惜");
-        list.add("当我已经给你天天分享日常的时候你就应该知道我已经沦陷了" + " -- " +
-                "You should know I'm falling when I'm already sharing my daily routine with you");
         list.add("热爱的事情，一定不能半途而废");
         list.add("唯有热爱，能抵漫长岁月");
         list.add("但行好事,莫问前程");

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileOutputStream;
 //03版Excel
 public class TestPoi01 {
-    private static String path = "C:\\Users\\404\\Desktop\\";
+    private static String path = "D:\\study";
 
     @Test
     public void test01() throws Exception{
@@ -37,9 +37,9 @@ public class TestPoi01 {
         Cell row1 = row2.createCell(1);
         //创建2-3列
         Cell row21 = row2.createCell(2);
-        cell3.setCellValue("张万福");
+        cell3.setCellValue("张三");
         row1.setCellValue("24");
-        row21.setCellValue("汪雅茹");
+        row21.setCellValue("向某某");
         FileOutputStream outputStream = new FileOutputStream(path + "03版xls学习.xls");
         //开始写出
         workbook.write(outputStream);
