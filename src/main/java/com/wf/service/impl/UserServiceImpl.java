@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
@@ -55,23 +58,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         List<User> byId = userMapper.getById(time);
         Map<String, String> sevenDate = getSevenDate(time[1]);
         for (User user : byId) {
-            sevenDate.put(sdf.format(user.getCreateTime()),user.getLv());
+            sevenDate.put(sdf.format(user.getCreateTime()), user.getLv());
         }
         for (Map.Entry<String, String> entry : sevenDate.entrySet()) {
-            System.out.println("Key:"+entry.getKey()+"value:"+entry.getValue());
+            System.out.println("Key:" + entry.getKey() + "   value:" + entry.getValue());
         }
         return byId;
     }
 
 
-    public static Map<String,String> getSevenDate(String time) throws ParseException {
+    public static Map<String, String> getSevenDate(String time) throws ParseException {
         Map<String, String> map = new LinkedHashMap<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date parse = sdf.parse(time);
         for (int i = 0; i < 8; i++) {
             Date date = DateUtils.addDays(parse, -i);
             String formatDate = sdf.format(date);
-            map.put(formatDate,"0");
+            map.put(formatDate, "0");
         }
         return map;
     }

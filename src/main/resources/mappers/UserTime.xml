@@ -5,8 +5,10 @@
 
 
     <select id="getById" resultType="com.wf.entry.User">
-SELECT DATE_FORMAT(create_time,'%Y-%m-%d') AS create_time,COUNT(DATE_FORMAT(create_time,'%Y-%m-%d')) AS lv FROM user WHERE
- create_time BETWEEN #{times[0]} AND #{times[1]} GROUP BY DATE_FORMAT(create_time,'%Y-%m-%d')
+        SELECT DATE_FORMAT(create_time, '%Y-%m-%d') AS create_time, COUNT(DATE_FORMAT(create_time, '%Y-%m-%d')) AS lv
+        FROM user
+        WHERE create_time BETWEEN #{times[0]} AND #{times[1]}
+        GROUP BY DATE_FORMAT(create_time, '%Y-%m-%d')
     </select>
 
 

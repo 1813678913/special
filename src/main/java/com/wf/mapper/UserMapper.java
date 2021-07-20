@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
-        List<User> getById(@Param("times") String[] time);
+    List<User> getById(@Param("times") String[] time);
 }

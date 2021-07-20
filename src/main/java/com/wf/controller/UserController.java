@@ -1,7 +1,8 @@
 package com.wf.controller;
 
 import com.alibaba.excel.EasyExcel;
-import com.wf.core.ResultBody;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wf.dto.BasCommodityImportDto;
 import com.wf.entry.User;
 import com.wf.service.UserService;
@@ -54,10 +55,11 @@ public class UserController {
 
     @RequestMapping("/all")
     public List<User> get() throws ParseException {
-        String[] time = {"2021-01-07", "2021-01-15"};
+        String[] time = {"2021-05-20 00:00:00", "2021-06-24 23:59:59"};
         List<User> all = userService.getAll(time);
         return all;
     }
+
 
     @RequestMapping("/test")
     public ResultJson<List<User>> test() {
@@ -98,8 +100,17 @@ public class UserController {
     }
 
     @GetMapping("/add")
-    public void insert(String name){
+    public void insert(String name) {
         userService.add(name);
+    }
+
+    //    pageHelp分页
+    @GetMapping("query")
+    public ResultJson<PageInfo<User>> queryUser() {
+        PageHelper.startPage(1, 2);
+        List<User> users = userService.selectUser();
+        PageInfo<User> pageInfo = new PageInfo<>(users);
+        return new ResultJson<>(pageInfo);
     }
 
 }
