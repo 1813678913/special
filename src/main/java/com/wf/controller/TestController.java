@@ -37,6 +37,8 @@ public class TestController {
         outputStream.close();
         inputStream.close();
         System.out.println("aaa");
+        System.out.println("aaa");
+
     }
 
 
