@@ -36,6 +36,7 @@ public class TestController {
         count++;
         outputStream.close();
         inputStream.close();
+        System.out.println("aaa");
     }
 
 
